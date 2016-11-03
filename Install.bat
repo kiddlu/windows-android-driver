@@ -13,7 +13,6 @@ set CER_FILE=%DIR_PATH%\Oh-My-CA.cer
 %CERTUTIL_EXE% -addstore root %CER_FILE%
 %CERTUTIL_EXE% -addstore TrustedPublisher %CER_FILE%
 
-%SIGNTOOL_EXE% sign /a /v /s PrivateCertStore /n Oh-My-CA /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\androidwinusb86.cat
-%SIGNTOOL_EXE% sign /a /v /s PrivateCertStore /n Oh-My-CA /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\androidwinusba64.cat
-
-%PREINST_EXE% %~dp0\driver\android_winusb.inf
+%SIGNTOOL_EXE% sign /a /v /s PrivateCertStore /n Oh-My-CA /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusb86.cat
+%SIGNTOOL_EXE% sign /a /v /s PrivateCertStore /n Oh-My-CA /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusba64.cat
+%PREINST_EXE% %~dp0\driver\google\android_winusb.inf
