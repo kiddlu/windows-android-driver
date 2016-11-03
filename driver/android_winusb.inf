@@ -63,6 +63,18 @@ HKR,,Icon,,-1
 %SingleAdbInterface%     = USB_Install, USB\VID_18D1&PID_4D06&MI_01
 %SingleAdbInterface%     = USB_Install, USB\VID_18D1&PID_4D07
 
+;########################################################
+;MyOwn add-on
+;Qcom
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9025
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9091
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9091&MI_03
+
+;Smartisan
+%SingleAdbInterface%     = USB_Install, USB\VID_29A9&PID_701B
+%SingleAdbInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
+;########################################################
 
 [Google.NTamd64]
 
@@ -110,8 +122,10 @@ HKR,,Icon,,-1
 ;Qcom
 %SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9025
 %SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9091
+%SingleAdbInterface%     = USB_Install, USB\VID_05C6&PID_9091&MI_03
 
-;Smartisan(T1, T2, T3, Jianguo)
+;Smartisan
 %SingleAdbInterface%     = USB_Install, USB\VID_29A9&PID_701B
 %SingleAdbInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
 ;########################################################
@@ -161,46 +175,12 @@ CoInstallers_CopyFiles=11
 2 = %DISK_NAME%,,,\amd64
 
 [SourceDisksFiles.x86]
-WinUSBCoInstaller.dll  = 1
-WdfCoInstaller01007.dll = 1
 WinUSBCoInstaller2.dll  = 1
 WdfCoInstaller01009.dll = 1
 
 [SourceDisksFiles.amd64]
-WinUSBCoInstaller.dll  = 2
-WdfCoInstaller01007.dll = 2
 WinUSBCoInstaller2.dll  = 2
 WdfCoInstaller01009.dll = 2
-
-; Kmdf 1.7 definitions
-[USB_Install_17]
-Include = winusb.inf
-Needs   = WINUSB.NT
-
-[USB_Install_17.Services]
-Include     = winusb.inf
-AddService  = WinUSB,0x00000002,WinUSB_ServiceInstall
-
-[USB_Install_17.Wdf]
-KmdfService = WINUSB, WinUSB_Install_17
-
-[WinUSB_Install_17]
-KmdfLibraryVersion  = 1.7
-
-[USB_Install_17.HW]
-AddReg  = Dev_AddReg
-
-[USB_Install_17.CoInstallers]
-AddReg    = CoInstallers_AddReg_17
-CopyFiles = CoInstallers_CopyFiles_17
-
-[CoInstallers_AddReg_17]
-HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01007.dll,WdfCoInstaller","WinUSBCoInstaller.dll"
-
-[CoInstallers_CopyFiles_17]
-WinUSBCoInstaller.dll
-WdfCoInstaller01007.dll
-
 
 [Strings]
 ProviderName                = "Google, Inc."
