@@ -1,1 +1,2 @@
-Oh-My-CA.cer
+*.cer
+/driver/google/*.cat
