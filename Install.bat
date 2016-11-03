@@ -1,7 +1,6 @@
 ::more info https://msdn.microsoft.com/en-us/windows/hardware/drivers/install/test-signing
 
-::inspired by https://github.com/kiddlu/UniversalAdbDriver
-
+::inspired by https://github.com/koush/UniversalAdbDriver
 
 :::::::::::::::::::::::::::::::::: get Admin ::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Check for permissions
