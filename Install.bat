@@ -27,29 +27,7 @@ if '%ERRORLEVEL%' NEQ '0' (
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @echo off
 
-:::::::::::::::::::::::::::::::::: get Pid ::::::::::::::::::::::::::::::::::::::::::::::::::
-rem Note: Session Name for privileged Administrative consoles is sometimes blank.
-if not defined SESSIONNAME set SESSIONNAME=Console
-
-setlocal
-
-rem Instance Set
-set instance=%DATE:~3%-%TIME%-%RANDOM%
-echo Instance: "%instance%"
-title %instance%
-
-rem PID Find
-for /f "usebackq tokens=2" %%a in (`tasklist /FO list /FI "SESSIONNAME eq %SESSIONNAME%" /FI "USERNAME eq %USERNAME%" /FI "WINDOWTITLE eq %instance%" ^| %SYSTEMROOT%\system32\find /i "PID:"`) do set PID=%%a
-if not defined PID for /f "usebackq tokens=2" %%a in (`tasklist /FO list /FI "SESSIONNAME eq %SESSIONNAME%" /FI "USERNAME eq %USERNAME%" /FI "WINDOWTITLE eq Administrator:  %instance%" ^| %SYSTEMROOT%\system32\find /i "PID:"`) do set PID=%%a
-if not defined PID echo !Error: Could not determine the Process ID of the current script.  Exiting.& exit /b 1
-
-rem Current Task Show
-echo PID: "%PID%"
-tasklist /v /FO list /FI "PID eq %PID%"
-
-rem Title Reset to Image Name (Image Name can contain spaces and will not be tokenized through usage of * token and %%b variable to access the remaining line without tokenization.)
-for /f "usebackq tokens=2*" %%a in (`tasklist /V /FO list /FI "PID eq %PID%" ^| %SYSTEMROOT%\system32\find /i "Image Name:"`) do title %%b
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+set SEED=%RANDOM%
 
 set DIR_PATH=%~dp0
 
@@ -65,9 +43,9 @@ set PREINST_EXE=%DIR_PATH%\apps\preinst.exe
 ::windows build-in
 set CERTUTIL_EXE=certutil.exe
 
-set CERT_FILE=%DIR_PATH%\Oh-My-Cert.%PID%.cer
+set CERT_FILE=%DIR_PATH%\Oh-My-Cert.%SEED%.cer
 
-%MAKECERT_EXE% -r -pe -ss PrivateCertStore -n "CN=Oh-My-Cert.%PID%" -b 09/29/1962 -e 09/29/2062 %CERT_FILE%
+%MAKECERT_EXE% -r -pe -ss PrivateCertStore -n "CN=Oh-My-Cert.%SEED%" -b 09/29/1962 -e 09/29/2062 %CERT_FILE%
 
 %CERTUTIL_EXE% -addstore root %CERT_FILE%
 %CERTUTIL_EXE% -addstore TrustedPublisher %CERT_FILE%
@@ -78,12 +56,12 @@ set CERT_FILE=%DIR_PATH%\Oh-My-Cert.%PID%.cer
 %INF2CAT_EXE%  /v  /driver:%~dp0\driver\google\ /os:7_x64,7_x86
 %INF2CAT_EXE%  /v  /driver:%~dp0\driver\qcom\ /os:7_x64,7_x86
 
-%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusb86.cat
-%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusba64.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%SEED% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusb86.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%SEED% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusba64.cat
 
-%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcser.cat
-%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcmdm.cat
-%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcwwan.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%SEED% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcser.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%SEED% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcmdm.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%SEED% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcwwan.cat
 
 %PREINST_EXE% %~dp0\driver\google\android_winusb.inf
 %PREINST_EXE% %~dp0\driver\qcom\qcser.inf

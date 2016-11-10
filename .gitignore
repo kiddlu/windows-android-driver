@@ -1,2 +1,3 @@
 *.cer
 /driver/google/*.cat
+/driver/qcom/*.cat
