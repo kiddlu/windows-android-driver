@@ -34,7 +34,7 @@ if not defined SESSIONNAME set SESSIONNAME=Console
 setlocal
 
 rem Instance Set
-set instance=%DATE% %TIME% %RANDOM%
+set instance=%DATE:~3%-%TIME%-%RANDOM%
 echo Instance: "%instance%"
 title %instance%
 
@@ -67,9 +67,6 @@ set CERTUTIL_EXE=certutil.exe
 
 set CERT_FILE=%DIR_PATH%\Oh-My-Cert.%PID%.cer
 
-del /f %~dp0\driver\google\androidwinusb86.cat
-del /f %~dp0\driver\google\androidwinusba64.cat
-
 %MAKECERT_EXE% -r -pe -ss PrivateCertStore -n "CN=Oh-My-Cert.%PID%" -b 09/29/1962 -e 09/29/2062 %CERT_FILE%
 
 %CERTUTIL_EXE% -addstore root %CERT_FILE%
@@ -79,9 +76,18 @@ del /f %~dp0\driver\google\androidwinusba64.cat
 %CERTMGR_EXE% /add %CERT_FILE% /s /r localMachine trustedpublisher
 
 %INF2CAT_EXE%  /v  /driver:%~dp0\driver\google\ /os:7_x64,7_x86
+%INF2CAT_EXE%  /v  /driver:%~dp0\driver\qcom\ /os:7_x64,7_x86
 
 %SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusb86.cat
 %SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\google\androidwinusba64.cat
+
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcser.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcmdm.cat
+%SIGNTOOL_EXE% sign /v /s PrivateCertStore /n Oh-My-Cert.%PID% /t http://timestamp.verisign.com/scripts/timstamp.dll %~dp0\driver\qcom\qcwwan.cat
+
 %PREINST_EXE% %~dp0\driver\google\android_winusb.inf
+%PREINST_EXE% %~dp0\driver\qcom\qcser.inf
+%PREINST_EXE% %~dp0\driver\qcom\qcmdm.inf
+%PREINST_EXE% %~dp0\driver\qcom\qcwwan.inf
 
 pause
