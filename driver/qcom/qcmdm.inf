@@ -28,12 +28,18 @@ Catalogfile = qcmdm.cat
 ExcludeFromSelect = *
 
 [Models.NTx86]
+;;Qcom
 %QUALCOMM90252% = Modem2, USB\VID_05C6&PID_9025&MI_02
-%QUALCOMM90911% = Modem2, USB\VID_05C6&PID_9091&MI_01
+
+;;Smartisan
+%QUALCOMM90252% = Modem2, USB\VID_29A9&PID_7020&MI_04
 
 [Models.NTamd64]
+;;Qcom
 %QUALCOMM90252% = Modem2, USB\VID_05C6&PID_9025&MI_02
-%QUALCOMM90911% = Modem2, USB\VID_05C6&PID_9091&MI_01
+
+;;Smartisan
+%QUALCOMM90252% = Modem2, USB\VID_29A9&PID_7020&MI_04
 
 [Modem2.NT]
 CopyFiles=QCUsbDriverFiles
@@ -70,7 +76,6 @@ QCUSBSER = "Qualcomm USB Device for Legacy Serial Communication"
 QcomSrcDisk = "QUALCOMM USB Driver Disk"
 QUALCOMM   = "Qualcomm Incorporated"
 QUALCOMM90252 = "Qualcomm HS-USB Android Modem 9025"
-QUALCOMM90911 = "Qualcomm HS-USB Android Modem 9091"
 
 [All]
 HKR,,FriendlyDriver,0,Unimodem.vxd

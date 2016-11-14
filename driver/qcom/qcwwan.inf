@@ -31,10 +31,14 @@ ExcludeFromSelect = *
   qcusbwwan.sys = 1000
 
 [QCOM.NTx86.6.1]
-%qcwwan.DeviceDesc90912%    = qcwwan.ndi, USB\VID_05C6&PID_9091&MI_02
+;;%qcwwan.DeviceDesc90912%    = qcwwan.ndi, USB\VID_05C6&PID_9091&MI_02
+
+%qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_29A9&PID_7020&MI_05
 
 [QCOM.NTamd64.6.1]
-%qcwwan.DeviceDesc90912%    = qcwwan.ndi, USB\VID_05C6&PID_9091&MI_02
+;;%qcwwan.DeviceDesc90912%    = qcwwan.ndi, USB\VID_05C6&PID_9091&MI_02
+
+%qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_29A9&PID_7020&MI_05
 
 [qcwwan.ndi]
 Characteristics = 0x4 ; NCF_PHYSICAL
@@ -148,5 +152,5 @@ qcwwan.CopyFiles = 12
 [Strings]
 QcomSrcDisk = "QUALCOMM USB Driver Disk"
 QCOM                       = "Qualcomm"
-qcwwan.DeviceDesc90912      = "Qualcomm HS-USB WWAN Adapter 9091"
+qcwwan.DeviceDesc      = "Qualcomm HS-USB WWAN Adapter"
 DiskId1 = "Qualcomm USB-NDIS Miniport Device Installation Disk #1"
