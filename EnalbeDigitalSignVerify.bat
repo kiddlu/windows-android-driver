@@ -23,8 +23,8 @@ if '%ERRORLEVEL%' NEQ '0' (
     if exist "%TMP%\getadmin.vbs" ( del "%TMP%\getadmin.vbs" )
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @echo off
-bcdedit /set loadoptions DISABLE_INTEGRITY_CHECKS
-bcdedit /set testsigning on
+bcdedit /deletevalue loadoptions
+bcdedit /set testsigning off
 echo "Press Enter to Reboot"
 pause
 %~dp0\apps\nircmd  exitwin reboot

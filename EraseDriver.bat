@@ -1,5 +1,4 @@
-:: get Admin
-::-------------------------------------
+:::::::::::::::::::::::::::::::::: get Admin ::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Check for permissions
 @echo off
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
@@ -23,8 +22,21 @@ if '%ERRORLEVEL%' NEQ '0' (
     if exist "%TMP%\getadmin.vbs" ( del "%TMP%\getadmin.vbs" )
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @echo off
-bcdedit /set loadoptions DISABLE_INTEGRITY_CHECKS
-bcdedit /set testsigning on
-echo "Press Enter to Reboot"
+set DIR_PATH=%~dp0
+set ERASEDRV_EXE=%DIR_PATH%\apps\erasedrv.exe
+
+
+%ERASEDRV_EXE% /g %~dp0\driver\google\android_winusb.inf
+%ERASEDRV_EXE% /r %~dp0\driver\google\android_winusb.inf
+
+%ERASEDRV_EXE% /g %~dp0\driver\qcom\qcser.inf
+%ERASEDRV_EXE% /r %~dp0\driver\qcom\qcser.inf
+
+%ERASEDRV_EXE% /g %~dp0\driver\qcom\qcmdm.inf
+%ERASEDRV_EXE% /r %~dp0\driver\qcom\qcmdm.inf
+
+%ERASEDRV_EXE% /g %~dp0\driver\qcom\qcwwan.inf
+%ERASEDRV_EXE% /r %~dp0\driver\qcom\qcwwan.inf
+echo.
+
 pause
-%~dp0\apps\nircmd  exitwin reboot
