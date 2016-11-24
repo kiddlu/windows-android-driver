@@ -28,17 +28,19 @@ Catalogfile = qcmdm.cat
 ExcludeFromSelect = *
 
 [Models.NTx86]
-;;Qcom
+;;T1 U1 T2 M1
 %QUALCOMM90252% = Modem2, USB\VID_05C6&PID_9025&MI_02
 
-;;Smartisan
+;;hehe
+%QUALCOMM90252% = Modem2, USB\VID_05C6&PID_7020&MI_01
 %QUALCOMM90252% = Modem2, USB\VID_29A9&PID_7020&MI_04
 
 [Models.NTamd64]
-;;Qcom
+;;T1 U1 T2 M1
 %QUALCOMM90252% = Modem2, USB\VID_05C6&PID_9025&MI_02
 
-;;Smartisan
+;;hehe
+%QUALCOMM90252% = Modem2, USB\VID_05C6&PID_7020&MI_01
 %QUALCOMM90252% = Modem2, USB\VID_29A9&PID_7020&MI_04
 
 [Modem2.NT]

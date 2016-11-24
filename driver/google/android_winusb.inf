@@ -23,28 +23,25 @@ HKR,,Icon,,-1
 
 
 [Android.NTx86]
-
-;Qcom
-;%AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025
+;T1 U1 T2 M1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
-
-;Smartisan
-;%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
+
+;hehe
+%AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_02
 
 [Android.NTamd64]
-
-;Qcom
-;%AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025
+;T1 U1 T2 M1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
-
-;Smartisan
-;%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
+
+;hehe
+%AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_02
+
 
 [USB_Install]
 Include = winusb.inf

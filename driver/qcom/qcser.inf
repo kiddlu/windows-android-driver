@@ -53,12 +53,13 @@ ExcludeFromSelect = *
 ;Ramdump
 %QcomDevice900E0%  = QportInstall00, USB\VID_05C6&PID_900E
 
-;Diag 9025
+;;Smartisan
+;;T1 U1 T2 M1
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_9025&MI_00
-;MNEA 9025
 %QcomDevice90253%  = QportInstall00, USB\VID_05C6&PID_9025&MI_03
 
-;;Smartisan
+;;you guess
+%QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_7020&MI_00
 %QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_03
 
 [QportInstall00.NT]
@@ -133,6 +134,7 @@ HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69031,1,1
 HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69032,1,1
 HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69037,1,1
 HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C69038,1,1
+HKLM,SYSTEM\CurrentControlSet\Control\UsbFlags,IgnoreHWSerNum05C67020,1,1
 
 [Strings]
 QCUSBSER = "Qualcomm USB Device for Legacy Serial Communication"

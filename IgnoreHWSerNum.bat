@@ -34,6 +34,7 @@ if '%ERRORLEVEL%' NEQ '0' (
 echo "add IgnoreHWSerNum list"
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v IgnoreHWSerNum05C69025 /t REG_BINARY /d 01 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v IgnoreHWSerNum05C69091 /t REG_BINARY /d 01 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v IgnoreHWSerNum05C67020 /t REG_BINARY /d 01 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v IgnoreHWSerNum29A9701B /t REG_BINARY /d 01 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v IgnoreHWSerNum29A97020 /t REG_BINARY /d 01 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\usbflags" /v GlobalDisableSerNumGen /t REG_BINARY /d 01 /f
