@@ -35,15 +35,14 @@ ExcludeFromSelect = *
 ;Ramdump
 %QcomDevice900E0%  = QportInstall00, USB\VID_05C6&PID_900E
 
-;Diag 9025
+;;Smartisan
+;;T1 U1 T2 M1
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_9025&MI_00
-;MNEA 9025
 %QcomDevice90253%  = QportInstall00, USB\VID_05C6&PID_9025&MI_03
 
-
-;;Smartisan
+;;hehe
+%QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_7020&MI_00
 %QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_03
-
 
 [QcomSerialPort.NTamd64]
 
@@ -58,7 +57,7 @@ ExcludeFromSelect = *
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_9025&MI_00
 %QcomDevice90253%  = QportInstall00, USB\VID_05C6&PID_9025&MI_03
 
-;;you guess
+;;hehe
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_7020&MI_00
 %QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_03
 
