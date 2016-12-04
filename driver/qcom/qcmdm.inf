@@ -10,7 +10,7 @@ Signature="$WINDOWS NT$"
 Class=Modem
 Provider=%QUALCOMM%
 CLASSGUID={4D36E96D-E325-11CE-BFC1-08002BE10318}
-DriverVer=10/08/2015,2.1.2.1
+DriverVer=03/25/2016,2.1.2.2
 Catalogfile = qcmdm.cat
 
 [Manufacturer]

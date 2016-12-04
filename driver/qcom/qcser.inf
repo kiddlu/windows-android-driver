@@ -9,7 +9,7 @@ signature  = "$WINDOWS NT$"
 Class      = Ports
 Provider   = %QUALCOMM%
 ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
-DriverVer  = 10/08/2015,2.1.2.1
+DriverVer  = 03/25/2016,2.1.2.2
 Catalogfile= qcser.cat
 
 [ControlFlags]
