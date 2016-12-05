@@ -23,6 +23,9 @@ HKR,,Icon,,-1
 
 
 [Android.NTx86]
+;fastboot
+%AndroidUSBInterface%     = USB_Install, USB\VID_18D1&PID_D00D
+
 ;T1 U1 T2 M1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
@@ -33,6 +36,9 @@ HKR,,Icon,,-1
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_02
 
 [Android.NTamd64]
+;fastboot
+%AndroidUSBInterface%     = USB_Install, USB\VID_18D1&PID_D00D
+
 ;T1 U1 T2 M1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
