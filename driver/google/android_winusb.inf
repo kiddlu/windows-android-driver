@@ -33,7 +33,7 @@ HKR,,Icon,,-1
 
 ;hehe
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
-%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_02
+%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_03
 
 [Android.NTamd64]
 ;fastboot
@@ -46,7 +46,7 @@ HKR,,Icon,,-1
 
 ;hehe
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
-%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_02
+%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_03
 
 
 [USB_Install]

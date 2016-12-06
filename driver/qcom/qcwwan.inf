@@ -32,11 +32,9 @@ ExcludeFromSelect = *
 
 [QCOM.NTx86.6.1]
 %qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_05C6&PID_7020&MI_02
-%qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_29A9&PID_7020&MI_05
 
 [QCOM.NTamd64.6.1]
 %qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_05C6&PID_7020&MI_02
-%qcwwan.DeviceDesc%  =  qcwwan.ndi, USB\VID_29A9&PID_7020&MI_05
 
 [qcwwan.ndi]
 Characteristics = 0x4 ; NCF_PHYSICAL

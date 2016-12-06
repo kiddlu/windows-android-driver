@@ -42,7 +42,7 @@ ExcludeFromSelect = *
 
 ;;hehe
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_7020&MI_00
-%QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_03
+%QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_00
 
 [QcomSerialPort.NTamd64]
 
@@ -59,7 +59,7 @@ ExcludeFromSelect = *
 
 ;;hehe
 %QcomDevice90250%  = QportInstall00, USB\VID_05C6&PID_7020&MI_00
-%QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_03
+%QcomDevice90250%  = QportInstall00, USB\VID_29A9&PID_7020&MI_00
 
 [QportInstall00.NT]
 CopyFiles=QCUsbDriverFiles
