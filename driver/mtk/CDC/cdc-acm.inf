@@ -1,0 +1,364 @@
+;/*****************************************************************************
+;*  Copyright Statement:
+;*  --------------------
+;*  This software is protected by Copyright and the information contained
+;*  herein is confidential. The software may not be copied and the information
+;*  contained herein may not be used or disclosed except with the written
+;*  permission of MediaTek Inc. (C) 2011
+;*
+;*  BY OPENING THIS FILE, BUYER HEREBY UNEQUIVOCALLY ACKNOWLEDGES AND AGREES
+;*  THAT THE SOFTWARE/FIRMWARE AND ITS DOCUMENTATIONS ("MEDIATEK SOFTWARE")
+;*  RECEIVED FROM MEDIATEK AND/OR ITS REPRESENTATIVES ARE PROVIDED TO BUYER ON
+;*  AN "AS-IS" BASIS ONLY. MEDIATEK EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES,
+;*  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF
+;*  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NONINFRINGEMENT.
+;*  NEITHER DOES MEDIATEK PROVIDE ANY WARRANTY WHATSOEVER WITH RESPECT TO THE
+;*  SOFTWARE OF ANY THIRD PARTY WHICH MAY BE USED BY, INCORPORATED IN, OR
+;*  SUPPLIED WITH THE MEDIATEK SOFTWARE, AND BUYER AGREES TO LOOK ONLY TO SUCH
+;*  THIRD PARTY FOR ANY WARRANTY CLAIM RELATING THERETO. MEDIATEK SHALL ALSO
+;*  NOT BE RESPONSIBLE FOR ANY MEDIATEK SOFTWARE RELEASES MADE TO BUYER'S
+;*  SPECIFICATION OR TO CONFORM TO A PARTICULAR STANDARD OR OPEN FORUM.
+;*
+;*  BUYER'S SOLE AND EXCLUSIVE REMEDY AND MEDIATEK'S ENTIRE AND CUMULATIVE
+;*  LIABILITY WITH RESPECT TO THE MEDIATEK SOFTWARE RELEASED HEREUNDER WILL BE,
+;*  AT MEDIATEK'S OPTION, TO REVISE OR REPLACE THE MEDIATEK SOFTWARE AT ISSUE,
+;*  OR REFUND ANY SOFTWARE LICENSE FEES OR SERVICE CHARGE PAID BY BUYER TO
+;*  MEDIATEK FOR SUCH MEDIATEK SOFTWARE AT ISSUE. 
+;*
+;*  THE TRANSACTION CONTEMPLATED HEREUNDER SHALL BE CONSTRUED IN ACCORDANCE
+;*  WITH THE LAWS OF THE STATE OF CALIFORNIA, USA, EXCLUDING ITS CONFLICT OF
+;*  LAWS PRINCIPLES.  ANY DISPUTES, CONTROVERSIES OR CLAIMS ARISING THEREOF AND
+;*  RELATED THERETO SHALL BE SETTLED BY ARBITRATION IN SAN FRANCISCO, CA, UNDER
+;*  THE RULES OF THE INTERNATIONAL CHAMBER OF COMMERCE (ICC).
+;*
+;*****************************************************************************/
+;
+; mtk_sp_usb2ser.inf
+;
+
+[Version]
+Signature="$Windows NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%MEDIATEK%
+DriverVer=01/22/2015,3.0.1504.0
+CatalogFile=cdc-acm.cat
+
+[Manufacturer]
+%MEDIATEK%=DeviceList, NTamd64
+
+[DestinationDirs]
+DefaultDestDir=12
+
+;-----------------------------------------
+; WCT usb2ser binary section
+;-----------------------------------------
+[SourceDisksFiles.x86]                 
+usb2ser.sys	= 1,.\x86
+
+[SourceDisksFiles.amd64]                 
+usb2ser.sys	= 1,.\x64
+
+[SourceDisksNames]           
+1=%INST_DISK_NAME%
+
+[DriverInstall.NT]
+CopyFiles=DriverCopyFiles
+AddReg=DriverAddReg
+
+[DriverInstall.NTamd64]
+CopyFiles=DriverCopyFiles
+AddReg=DriverAddReg
+
+[DriverCopyFiles]
+usb2ser.sys,,,2
+
+[DriverInstall.NT.Services]
+AddService=wdm_usb,2,DriverService   
+
+[DriverInstall.NTamd64.Services]
+AddService=wdm_usb,2,DriverService
+
+[DriverService]
+ServiceType=1          
+StartType=3                            
+ErrorControl=1                        
+ServiceBinary=%12%\usb2ser.sys
+
+[DriverInstall.NT.HW]
+AddReg=DriverHwAddReg
+
+[DriverInstall.NTamd64.HW]
+AddReg=DriverHwAddReg
+
+[DriverHwAddReg]
+HKR,,DriverInfo,,"USB to Com Port registry key"
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GRGWGX;;;BA)(A;;GRGWGX;;;WD)(A;;GRGWGX;;;RC)"
+
+[DriverAddReg]
+HKR,,NTMPDriver,,usb2ser.sys 
+HKR,,Installer32,,"MsPorts.Dll,PortsClassInstaller"
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,IdleTime,0x00010001,"10"
+HKR,,IdleEnable,0x00010001,"0" 
+HKR,,IdleWWBinded,0x00010001,"1" 
+
+;------------------------------------------------------------------------------
+;  Vendor and Product ID Definitions
+;------------------------------------------------------------------------------
+
+[DeviceList]
+; BootRom & Preloader VCOM
+%VCOM_BOOTROM%=DriverInstall, USB\Vid_0e8d&Pid_0003
+%VCOM_PRELOADER%=DriverInstall, USB\Vid_0e8d&Pid_2000
+%VCOM_DA%=DriverInstall, USB\Vid_0e8d&Pid_2001
+%VCOM%=DriverInstall, USB\Vid_0e8d&Pid_2007
+
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2006&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2007
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200A&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200D&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200E&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200F&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2010&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2011&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2012&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2013&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2018&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2019&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_201A&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_201B&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2026&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2026&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2027&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2027&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2028&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2028&MI_05
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2029&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2029&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202A&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202A&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202B&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202B&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202C&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202C&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202D&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202D&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_202E&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202E&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_202F&MI_01
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202F&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202F&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2040&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2040&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2041&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2041&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2042&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2042&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2043&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2043&MI_04
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2044&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2045&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2045&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2047&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2049&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2061&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2061&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2062&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2062&MI_05
+
+; C2K related
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2031&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2031&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2031&MI_02
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2032&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2032&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2032&MI_02
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2033&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2033&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2033&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2033&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2034&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2034&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2034&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2034&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2035&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2035&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2036&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2037&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2038&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2038&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2039&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2039&MI_04
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2050&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2050&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2050&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2051&MI_00
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2052&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2052&MI_01
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2053&MI_00
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2054&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2054&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2063&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2063&MI_01
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2063&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2063&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2064&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2064&MI_05
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2064&MI_07
+
+;MBIM related
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2055&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2057&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2058&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2058&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2059&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2059&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205D&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205D&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205E&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_205E&MI_04
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205A&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_205B&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205B&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205C&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205C&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205F&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205F&MI_04
+
+[DeviceList.NTamd64]
+; BootRom & Preloader VCOM
+%VCOM_BOOTROM%=DriverInstall, USB\Vid_0e8d&Pid_0003
+%VCOM_PRELOADER%=DriverInstall, USB\Vid_0e8d&Pid_2000
+%VCOM_DA%=DriverInstall, USB\Vid_0e8d&Pid_2001
+%VCOM%=DriverInstall, USB\Vid_0e8d&Pid_2007
+
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2006&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2007
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200A&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200D&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200E&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_200F&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2010&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2011&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2012&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2013&MI_01
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2018&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2019&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_201A&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_201B&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2026&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2026&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2027&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2027&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2028&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2028&MI_05
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2029&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2029&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202A&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202A&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202B&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202B&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202C&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202C&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202D&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202D&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_202E&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202E&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_202F&MI_01
+%ETS%=DriverInstall, USB\VID_0E8D&PID_202F&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_202F&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2040&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2040&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2041&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2041&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2042&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2042&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2043&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2043&MI_04
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2044&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2045&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2045&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2047&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2049&MI_03
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2061&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2061&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2062&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2062&MI_05
+
+; C2K related
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2031&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2031&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2031&MI_02
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2032&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2032&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2032&MI_02
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2033&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2033&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2033&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2033&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2034&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2034&MI_01
+%AT%=DriverInstall, USB\VID_0E8D&PID_2034&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2034&MI_04
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2035&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2035&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2036&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2037&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2038&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2038&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2039&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2039&MI_04
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2050&MI_00
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2050&MI_01
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2050&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2051&MI_00
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2052&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2052&MI_01
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2053&MI_00
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2054&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2054&MI_03
+%MODEM%=DriverInstall, USB\VID_0E8D&PID_2063&MI_00
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2063&MI_01
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2063&MI_03
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2063&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2064&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2064&MI_05
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2064&MI_07
+
+;MBIM related
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2055&MI_02
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2057&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2058&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_2058&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_2059&MI_03
+%ETS%=DriverInstall, USB\VID_0E8D&PID_2059&MI_05
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205D&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205D&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205E&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_205E&MI_04
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205A&MI_02
+%ETS%=DriverInstall, USB\VID_0E8D&PID_205B&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205B&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205C&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205C&MI_04
+%VCOM%=DriverInstall, USB\VID_0E8D&PID_205F&MI_02
+%ELT%=DriverInstall, USB\VID_0E8D&PID_205F&MI_04
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+MEDIATEK            = "MediaTek Inc."
+GADGET              = "Android Gadget VCOM Driver"
+SERVICE             = "USB RS-232 Emulation Driver"
+VCOM_BOOTROM        = "MediaTek USB Port"
+VCOM_PRELOADER      = "MediaTek PreLoader USB VCOM (Android)"
+VCOM_DA        	    = "MediaTek DA USB VCOM (Android)"
+VCOM                = "MediaTek USB VCOM (Android)"
+MODEM               = "MediaTek Modem Port"
+ELT                 = "MediaTek ELT Port"
+ETS                 = "MediaTek ETS Port"
+AT                  = "MediaTek AT Port"
+INST_DISK_NAME      = "CD Disk"
