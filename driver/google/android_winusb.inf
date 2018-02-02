@@ -30,8 +30,9 @@ HKR,,Icon,,-1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
+%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701C&MI_03
 
-;hehe
+Jianguo-Pro
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_03
 
@@ -43,8 +44,9 @@ HKR,,Icon,,-1
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_9025&MI_01
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701A&MI_02
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701B&MI_02
+%AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_701C&MI_03
 
-;hehe
+Jianguo-Pro
 %AndroidUSBInterface%     = USB_Install, USB\VID_05C6&PID_7020&MI_03
 %AndroidUSBInterface%     = USB_Install, USB\VID_29A9&PID_7020&MI_03
 
